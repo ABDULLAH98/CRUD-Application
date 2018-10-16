@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar color="primary"  >
+    <ion-title>Welcome to the CRUD Application</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="row header">
+    <div class="col">ID</div>
+    <div class="col">Name</div>
+    <div class="col">Last Name</div>
+    <div class="col">Father's Name</div>
+    <div class="col"></div>
+    <div class="col"></div>
+    <div class="col"></div>
+
+  </div>
+
+  <div class="row" *ngFor="let Data of recievedData">
+    <div class="col">{{Data.id}}</div>
+    <div class="col">{{Data.name}}</div>
+    <div class="col">{{Data.last_name}}</div>
+    <div class="col">{{Data.father_name}}</div>
+    <div class="col">
+      <button class="button" ion-button color="secondary" round (click)="viewData(Data.id)">View</button>
+    </div>
+    <div class="col">
+      <button class="button" ion-button color="secondary" round (click)="register(Data.id)">Edit</button>
+    </div>
+    <div class="col">
+      <button class="button" ion-button color="secondary" round (click)="deleteData(Data.id)">Delete</button>
+    </div>
+  </div>
+
+  <button ion-button color="secondary" round (click)="register('create')">
+    Create
+  </button>
+  
+
+</ion-content>

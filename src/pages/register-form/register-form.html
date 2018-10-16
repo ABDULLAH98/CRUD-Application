@@ -1,0 +1,21 @@
+<form (ngSubmit)="submitForm()">
+  <label class="style">ID</label>
+  <ion-input type="text" [(ngModel)]="myUser.id" placeholder="Enter ID" [ngModelOptions]="{standalone: true}"></ion-input>
+  <label class="style">Name</label>
+  <ion-input type="text" [(ngModel)]="myUser.name" placeholder="Enter name" [ngModelOptions]="{standalone: true}"></ion-input>
+  <label class="style">Last Name</label>
+  <ion-input type="text" [(ngModel)]="myUser.last_name" placeholder="Enter Last name" [ngModelOptions]="{standalone: true}"></ion-input>
+  <label class="style">Father's Name</label>
+  <ion-input type="text" [(ngModel)]="myUser.father_name" placeholder="Enter father's name" [ngModelOptions]="{standalone: true}"></ion-input>
+  <label class="style">Address</label>
+  <ion-input type="text" [(ngModel)]="myUser.address" placeholder="Enter address" [ngModelOptions]="{standalone: true}"></ion-input>
+  <label class="style">Mobile Number</label>
+  <ion-input type="text" [(ngModel)]="myUser.mobileNumber" placeholder="Enter Mobile Number" [ngModelOptions]="{standalone: true}"></ion-input>
+  <label class="style">Email Id</label>
+  <ion-input type="email" [(ngModel)]="myUser.emailId" placeholder="Enter email Id" [ngModelOptions]="{standalone: true}"></ion-input>
+  <label class="style">Gender</label>
+  <ion-input type="text" [(ngModel)]="myUser.gender" placeholder="Enter your Gender" [ngModelOptions]="{standalone: true}"></ion-input>
+
+  <button ion-button color="light" round type="submit">Submit</button>
+</form>
+<button  ion-button color="light" round type="submit" (click)="updateData()">Save Edit Details</button>
