@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ServiceApi } from '../Services/Storage.Service';
+import { ServiceApi } from '../Services/api.service';
 
 
 
@@ -12,22 +12,22 @@ import { ServiceApi } from '../Services/Storage.Service';
 })
 export class ViewPage {
 
-  recievedData
+  recievedData:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private serviceApi: ServiceApi) {
   }
   ngOnInit() {
     console.log("view Page loaded");
-    let index = (this.navParams.get('indexValue'));
-    this.serviceApi.viewDataService(index)
-      .subscribe(
-        result => {
-          this.recievedData = result._body;
-          this.recievedData = JSON.parse(this.recievedData);
-          console.log("recieved Data", this.recievedData);
+    this.recievedData = (this.navParams.get('data'));
+    // this.serviceApi.viewDataService(index)
+    //   .subscribe(
+    //     (result:any) => {
+    //       this.recievedData = result._body;
+    //       this.recievedData = JSON.parse(this.recievedData);
+    //       console.log("recieved Data", this.recievedData);
 
-        },
-        error => console.log("Error :: " + error),
-    );
+    //     },
+    //     error => console.log("Error :: " + error),
+    // );
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ViewPage');

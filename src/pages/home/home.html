@@ -5,32 +5,37 @@
 </ion-header>
 
 <ion-content>
-  <div class="row header">
-    <div class="col">ID</div>
-    <div class="col">Name</div>
-    <div class="col">Last Name</div>
-    <div class="col">Father's Name</div>
-    <div class="col"></div>
-    <div class="col"></div>
-    <div class="col"></div>
+  <ion-grid *ngIf="recievedData">
+    <ion-row class="style">
+      <ion-col col-1>ID</ion-col>
+      <ion-col col-2>Name</ion-col>
+      <ion-col col-2>Last Name</ion-col>
+      <ion-col col-3>Father's Name</ion-col>
+      <ion-col col-1></ion-col>
+      <ion-col col-1></ion-col>
+      <ion-col col-1></ion-col>
+    </ion-row>
 
-  </div>
+    <ion-row class="style" *ngFor="let Data of recievedData;let i = index">
+      <ion-col col-1>{{Data.id}}</ion-col>
+      <ion-col col-2>{{Data.name}} </ion-col>
+      <ion-col col-2>{{Data.last_name}}</ion-col>
+      <ion-col col-3>{{Data.father_name}}</ion-col>
+      <ion-col col-1>  <button class="button" ion-button color="secondary" round (click)="viewData(Data)">View</button>
+      </ion-col>
+      <ion-col col-1> <button class="button" ion-button color="secondary" round (click)="register(Data)">Edit</button>
+      </ion-col>
+      <ion-col col-1><button class="button" ion-button color="secondary" round (click)="deleteData(Data.id, i)">Delete</button>
+      </ion-col>
+      
 
-  <div class="row" *ngFor="let Data of recievedData">
-    <div class="col">{{Data.id}}</div>
-    <div class="col">{{Data.name}}</div>
-    <div class="col">{{Data.last_name}}</div>
-    <div class="col">{{Data.father_name}}</div>
-    <div class="col">
-      <button class="button" ion-button color="secondary" round (click)="viewData(Data.id)">View</button>
-    </div>
-    <div class="col">
-      <button class="button" ion-button color="secondary" round (click)="register(Data.id)">Edit</button>
-    </div>
-    <div class="col">
-      <button class="button" ion-button color="secondary" round (click)="deleteData(Data.id)">Delete</button>
-    </div>
-  </div>
+    </ion-row>
+    
+  
+  </ion-grid>
+
+ 
+    
 
   <button ion-button color="secondary" round (click)="register('create')">
     Create

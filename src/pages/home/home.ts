@@ -5,31 +5,33 @@ import { stringify } from '@angular/compiler/src/util';
 import { JsonPipe } from '@angular/common';
 import { RegisterFormPageModule } from '../register-form/register-form.module';
 import { RegisterFormPage } from '../register-form/register-form';
-import { ServiceApi } from '../Services/Storage.Service';
+import { ServiceApi } from '../Services/api.service';
 import { ViewPage } from '../view/view';
+import { WindowService } from '../Services/Window.Service';
 
 
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  providers: [ServiceApi]
+  providers: [ServiceApi,WindowService]
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, private serviceApi: ServiceApi) {
+  constructor(public navCtrl: NavController, private serviceApi: ServiceApi, private window: WindowService) {
 
   }
   recievedData: any;
   dataEdited: any;
   ngOnInit() {
+    console.log("data got");
     this.getDataStream();
   }
   getDataStream(): void {
 
     this.serviceApi.getData()
       .subscribe(
-        result => {
+        (result:any) => {
           this.recievedData = result._body;
           this.recievedData = JSON.parse(this.recievedData);
 
@@ -37,22 +39,41 @@ export class HomePage {
         error => console.log("Error :: " + error),
     )
   }
-  viewData(Index) {
-    console.log("index value from home page", Index);
-    this.navCtrl.push(ViewPage, { indexValue: Index });
+  viewData(data) {
+    console.log("item value from home page", data);
+    this.navCtrl.push(ViewPage, { "data": data });
   }
-  register(variable) {
-    console.log("button id is ", variable);
+  register(Data) {
+    console.log("button id is ", Data);
 
-    this.navCtrl.push(RegisterFormPage, { Variable: variable });
+    this.navCtrl.push(RegisterFormPage, { Variable: Data });
   }
 
-  deleteData(DataId) {
-    let Index = DataId;
+  deleteData(DataId:number, index:number) {
+    // let id = DataId;/
     console.log("delete function called from home.ts");
-    console.log(Index);
+    console.log(DataId);
+    this.window.alert('Are you sure').then(
+      ()=>{this.serviceApi.deleteService(DataId).subscribe((response) => {
+        console.log("user Deleted",response)
+        if(response.ok == true){
+          this.window.toast("deletion successful");
+          this.recievedData.splice(index,1);
+        }
+      });},
+      ()=>{}
+    );
 
-    this.serviceApi.deleteService(Index).subscribe(() => console.log("user Deleted"));
+
+
+
+    // this.serviceApi.deleteService(DataId).subscribe((response) => {
+    //   console.log("user Deleted",response)
+    //   if(response.ok == true){
+    //     this.window.toast("deletion successful");
+    //     this.recievedData.splice(index,1);
+    //   }
+    // });
     //this.navCtrl.push(HomePage);
   }
 

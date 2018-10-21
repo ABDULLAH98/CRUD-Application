@@ -10,26 +10,24 @@
 <ion-content padding>
   <ion-grid *ngIf="recievedData">
     <ion-row class="style">
-      <ion-col >ID</ion-col>
-      <ion-col >Name</ion-col>
-      <ion-col >Last Name</ion-col>
-      <ion-col >Father Name</ion-col>
-      <ion-col >Address</ion-col>
-      <ion-col >Mobile Number</ion-col>
-      <ion-col >Email Id</ion-col>
-      <ion-col >Gender</ion-col>
+      <ion-col col-1>ID</ion-col>
+      <ion-col col-2>Name</ion-col>
+      <ion-col col-2>Father Name</ion-col>
+      <ion-col col-2>Address</ion-col>
+      <ion-col col-2>Mobile Number</ion-col>
+      <ion-col col-2>Email Id</ion-col>
+      <ion-col col-1>Gender</ion-col>
 
 
     </ion-row>
     <ion-row class="style">
-      <ion-col >{{recievedData.id}}</ion-col>
-      <ion-col >{{recievedData.name}} </ion-col>
-      <ion-col >{{recievedData.last_name}}</ion-col>
-      <ion-col >{{recievedData.father_name}}</ion-col>
-      <ion-col >{{recievedData.address}}</ion-col>
-      <ion-col >{{recievedData.mobileNumber}}</ion-col>
-      <ion-col >{{recievedData.emailId}}</ion-col>
-      <ion-col >{{recievedData.gender}}</ion-col>
+      <ion-col col-1>{{recievedData.id}}</ion-col>
+      <ion-col col-2>{{recievedData.name}} {{recievedData.last_name}}</ion-col>
+      <ion-col col-2>{{recievedData.father_name}}</ion-col>
+      <ion-col col-2>{{recievedData.address}}</ion-col>
+      <ion-col col-2>{{recievedData.mobileNumber}}</ion-col>
+      <ion-col col-2>{{recievedData.emailId}}</ion-col>
+      <ion-col col-1>{{recievedData.gender}}</ion-col>
 
 
     </ion-row>

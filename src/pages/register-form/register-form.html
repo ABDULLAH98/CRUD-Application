@@ -1,4 +1,13 @@
-<form (ngSubmit)="submitForm()">
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Register Page</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+<form (ngSubmit)="submitForm()"#myForm="ngForm">
   <label class="style">ID</label>
   <ion-input type="text" [(ngModel)]="myUser.id" placeholder="Enter ID" [ngModelOptions]="{standalone: true}"></ion-input>
   <label class="style">Name</label>
@@ -13,9 +22,23 @@
   <ion-input type="text" [(ngModel)]="myUser.mobileNumber" placeholder="Enter Mobile Number" [ngModelOptions]="{standalone: true}"></ion-input>
   <label class="style">Email Id</label>
   <ion-input type="email" [(ngModel)]="myUser.emailId" placeholder="Enter email Id" [ngModelOptions]="{standalone: true}"></ion-input>
-  <label class="style">Gender</label>
-  <ion-input type="text" [(ngModel)]="myUser.gender" placeholder="Enter your Gender" [ngModelOptions]="{standalone: true}"></ion-input>
-
-  <button ion-button color="light" round type="submit">Submit</button>
+ <!-- <label class="style">Gender</label>-->
+<!--  <ion-input type="text" [(ngModel)]="myUser.gender" placeholder="Enter your Gender" [ngModelOptions]="{standalone: true}"></ion-input>-->
+<ion-list radio-group [(ngModel)]=" myUser.gender" name ="genderValue">
+  <ion-item>
+    <ion-label>Male</ion-label>
+    <ion-radio value="Male" checked></ion-radio>
+  </ion-item>
+  <ion-item>
+    <ion-label>Female</ion-label>
+    <ion-radio value="Female"></ion-radio>
+  </ion-item>
+  
+</ion-list>
+  
+  <button ion-button color="light" round type="submit" [disabled]="!myForm.form.valid">Submit</button>
 </form>
-<button  ion-button color="light" round type="submit" (click)="updateData()">Save Edit Details</button>
+
+
+
+</ion-content>
